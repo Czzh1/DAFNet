@@ -1,0 +1,17 @@
+# DAFNet default configuration
+# Copy this file and modify for your specific dataset
+
+dataset_path: "/path/to/your/dataset"
+device: "0"
+num_classes: 3
+batch_size: 32
+epochs: 100
+cv_folds: 5
+learning_rate: 0.001
+weight_decay: 0.01
+num_workers: 8
+model_save_path: "./outputs"
+model_name: "dafnet_tiny"
+freeze_layers: false
+resume: false
+weights: ""
