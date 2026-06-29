@@ -1,4 +1,4 @@
-# DAFNet: Dynamic Attention Fusion Network
+# DAFNet: A novel Dynamic Adaptive Fusion Network for medical image classification
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.8+-green.svg)](https://www.python.org/)
@@ -13,12 +13,12 @@
 
 ## Model Variants
 
-| Model        | Params (3-class) | FLOPs  | Description          |
-|-------------|------------------|--------|----------------------|
-| DAFNet-Tiny | ~4.5M            | ~0.5G  | Lightweight baseline |
-| DAFNet-Small| ~8.5M            | ~0.9G  | Balanced performance |
-| DAFNet-Base | ~12.5M           | ~1.3G  | Higher capacity      |
-| DAFNet-Large| ~20.0M           | ~2.1G  | Maximum accuracy     |
+| Model       | Params (3-class)  | FLOPs   | Description          |
+|-------------|-------------------|---------|----------------------|
+| DAFNet-Tiny | ~2.86M            | ~0.62G  | Lightweight baseline |
+| DAFNet-Small| ~3.68M            | ~0.79G  | Balanced performance |
+| DAFNet-Base | ~4.51M            | ~0.97G  | Higher capacity      |
+| DAFNet-Large| ~6.16M            | ~1.32G  | Maximum accuracy     |
 
 > Note: FLOPs measured at 224×224 input resolution. Actual parameter counts vary with `num_classes`.
 
@@ -148,33 +148,23 @@ Classifier: 1×1 Conv → GAP → Linear
     │  → (num_classes,)
 ```
 
-### BaseBlock Detail
-
-Each `BaseBlock` performs:
-1. **Grouped 1×1 conv** for inter-group channel mixing
-2. **Channel shuffle** into 4 groups
-3. **Feature map rotation** (4 orientations: identity, transpose, flip, flip+transpose)
-4. **Depthwise 3×3 conv** on each group with BN fusion
-5. **Dynamic kernel fusion** from the fused weights
-6. **Channel attention** (AvgPool + MaxPool → sigmoid gating)
-7. **Residual connection** with parallel depthwise conv path
-
 ## Citation
 
 If you use DAFNet in your research, please cite:
 
 ```bibtex
-@article{dafnet2024,
-  title={DAFNet: Dynamic Attention Fusion Network for Medical Image Classification},
-  author={...},
-  journal={...},
-  year={2024}
+@article{CAI2026103507,
+title = {DAFNet: A novel Dynamic Adaptive Fusion Network for medical image classification},
+journal = {Information Fusion},
+volume = {126},
+pages = {103507},
+year = {2026},
+issn = {1566-2535},
+doi = {https://doi.org/10.1016/j.inffus.2025.103507},
+url = {https://www.sciencedirect.com/science/article/pii/S1566253525005792},
+author = {Ziheng Cai and Yuli Chen and Jinjie Wang and Xin He and Zixuan Pei and Xiujuan Lei and Cheng Lu}
 }
 ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
